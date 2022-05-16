@@ -39,7 +39,7 @@ private:
     
     //=============================================================================
                                 //ComboBox connection
-    //==============================================================================
+    //=============================================================================
     std::unique_ptr <juce::AudioProcessorValueTreeState::ComboBoxAttachment> filterTypeVal;
     juce::ComboBox filterMenu;
     

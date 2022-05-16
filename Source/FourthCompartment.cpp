@@ -12,7 +12,7 @@
  
  FourthCompartment has to initialise the plugin processor,
  in order to connect the sliders with the set settings in the parameter layout.
-  ==============================================================================
+  =============================================================================
 */
 //                              References
 //                           (DrBrusin, 2022)
@@ -35,9 +35,7 @@ audioProcessor(p), sliderADSRArray{&filterRes,
             static const std::vector<juce::Colour> colours = {black};
             return colours[index];
             
-         /*   static const auto getFreqSliderColour = [this](int index) {
-                static const std::vector<juce::Colour> colours = {black};
-                return colours[index];*/
+         
             
         };
         {
@@ -46,9 +44,7 @@ audioProcessor(p), sliderADSRArray{&filterRes,
                 static const std::vector<juce::Colour> colours = {limeGreen, red};
                 return colours[index];
                 
-             /*   static const auto getFreqSliderColour = [this](int index) {
-                    static const std::vector<juce::Colour> colours = {black};
-                    return colours[index];*/
+           
                 
             };
         

@@ -22,7 +22,7 @@ void FreqSliderLookAndFeel::drawLinearSlider (juce::Graphics& g, int x, int y, i
 {
     //=============================================================================
                                             //Creates BackgroundTrack for Slider
-    //==============================================================================
+    //=============================================================================
   
     g.setColour (juce::Colours::ghostwhite.darker(0.075f));
 

@@ -183,7 +183,6 @@ void ADSRSliderLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y, i
     
     g.setColour (blackGrey);
     g.fillPath (thumb, juce::AffineTransform::rotation (toAngle + 3.12f).translated (bounds.getCentre()));
-    
   
 }
    

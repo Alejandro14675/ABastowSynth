@@ -29,7 +29,7 @@ GainSliderLookAndFeel::~GainSliderLookAndFeel(){};
     {
     //=============================================================================
         //Creates BackgroundTrack for Slider
-    //==============================================================================
+    //=============================================================================
     g.setColour (juce::Colours::ghostwhite.darker(5.175f));
 
     auto trackWidthGainBackground1 = juce::jmin (15.5f, (float) height  );

@@ -17,26 +17,18 @@
  Initialises the default functions and variables in the class.
   Overrides any Pure Virtual Functions.
   ==============================================================================
->>>>>>>> 005989dfc1a197605705e5ad921e8caac98afe33:Source/GainSliderLookAndFeel.h
 */
 
 #pragma one
 #include <JuceHeader.h>
 
-<<<<<<<< HEAD:Source/FreqSliderLookAndFeel.h
+
 class FreqSliderLookAndFeel : public juce::LookAndFeel_V4
 {
 public:
     FreqSliderLookAndFeel();
    ~FreqSliderLookAndFeel();
-========
-class GainSliderLookAndFeel : public juce::LookAndFeel_V4
-{
-public:
-    GainSliderLookAndFeel();
-    ~GainSliderLookAndFeel()override;
->>>>>>>> 005989dfc1a197605705e5ad921e8caac98afe33:Source/GainSliderLookAndFeel.h
-                            
+
     void drawLinearSlider (juce::Graphics& , int x, int y, int width, int height,
                            float sliderPos,
                            float minSliderPos,
@@ -51,7 +43,7 @@ public:
 private:
     //=============================================================================
                                        //Colours
-    //==============================================================================
+    //=============================================================================
     juce::Colour red = juce::Colour::fromFloatRGBA (0.91f, 0.25f, 0.25f, 1.0f);
     juce::Colour orange = juce::Colour::fromFloatRGBA (0.91f, 0.62f, 0.25f, 1.0f);
     juce::Colour yellow = juce::Colour::fromFloatRGBA (0.91f, 0.84f, 0.25f, 1.0f);
@@ -66,10 +58,7 @@ private:
     juce::Colour blackGrey = juce::Colour::fromFloatRGBA (0.2f, 0.2f, 0.2f, 1.0f);
     
     juce::Colour mainSliderColour = red;
-   
-<<<<<<<< HEAD:Source/FreqSliderLookAndFeel.h
+ 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( FreqSliderLookAndFeel)
-========
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GainSliderLookAndFeel)
->>>>>>>> 005989dfc1a197605705e5ad921e8caac98afe33:Source/GainSliderLookAndFeel.h
+
 };
