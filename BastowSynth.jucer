@@ -7,124 +7,75 @@
               pluginManufacturer="Bastow" pluginAUMainType="'aumu'">
   <MAINGROUP id="bxXc2C" name="BastowSynth">
     <GROUP id="{B722115E-A461-5B1D-E0DD-ABFD8A410864}" name="Source">
-      <GROUP id="{C20D9B28-0316-B2EB-5AC8-3214E0A37E5A}" name="Assets">
-        <FILE id="foQn2q" name="BackgroundComponent.png" compile="0" resource="1"
+      <GROUP id="{73DC84B5-C118-70C6-B4B5-99CC2D7E4D13}" name="Assets">
+        <FILE id="wWuuL7" name="BackgroundComponent.png" compile="0" resource="1"
               file="Source/Assets/BackgroundComponent.png"/>
-        <FILE id="ifnaNp" name="BackgroundSynth.png" compile="0" resource="1"
+        <FILE id="QFJdNa" name="BackgroundSynth.png" compile="0" resource="1"
               file="Source/Assets/BackgroundSynth.png"/>
       </GROUP>
-      <FILE id="qboRpI" name="AttackSlider.cpp" compile="1" resource="0"
-            file="Source/AttackSlider.cpp"/>
-      <FILE id="Zavxb2" name="AttackSlider.h" compile="0" resource="0" file="Source/AttackSlider.h"/>
-      <FILE id="PBiB1c" name="CircularBuffer.cpp" compile="1" resource="0"
-            file="Source/CircularBuffer.cpp"/>
-      <FILE id="nQ7tMy" name="CircularBuffer.h" compile="0" resource="0"
-            file="Source/CircularBuffer.h"/>
-      <FILE id="nUZs62" name="CutoffSlider.cpp" compile="1" resource="0"
-            file="Source/CutoffSlider.cpp"/>
-      <FILE id="e6ca5b" name="CutoffSlider.h" compile="0" resource="0" file="Source/CutoffSlider.h"/>
-      <FILE id="mgFAb9" name="DecaySlider.cpp" compile="1" resource="0" file="Source/DecaySlider.cpp"/>
-      <FILE id="BK4Mvy" name="DecaySlider.h" compile="0" resource="0" file="Source/DecaySlider.h"/>
-      <FILE id="UjWgDw" name="FifthCompartment.cpp" compile="1" resource="0"
-            file="Source/FifthCompartment.cpp"/>
-      <FILE id="N7V1n0" name="FifthCompartment.h" compile="0" resource="0"
-            file="Source/FifthCompartment.h"/>
-      <FILE id="dskIjd" name="FirstCompartment.cpp" compile="1" resource="0"
-            file="Source/FirstCompartment.cpp"/>
-      <FILE id="JbuCAf" name="FirstCompartment.h" compile="0" resource="0"
-            file="Source/FirstCompartment.h"/>
-      <FILE id="u996P0" name="FourthCompartment.cpp" compile="1" resource="0"
-            file="Source/FourthCompartment.cpp"/>
-      <FILE id="cFqGyL" name="FourthCompartment.h" compile="0" resource="0"
-            file="Source/FourthCompartment.h"/>
-      <FILE id="CHhcII" name="Freq1LAF.cpp" compile="1" resource="0" file="Source/Freq1LAF.cpp"/>
-      <FILE id="A83oeV" name="Freq1LAF.h" compile="0" resource="0" file="Source/Freq1LAF.h"/>
-      <FILE id="qiH1QL" name="Freq2LAF.cpp" compile="1" resource="0" file="Source/Freq2LAF.cpp"/>
-      <FILE id="W5WWiV" name="Freq2LAF.h" compile="0" resource="0" file="Source/Freq2LAF.h"/>
-      <FILE id="MHm7dL" name="Freq3LAF.cpp" compile="1" resource="0" file="Source/Freq3LAF.cpp"/>
-      <FILE id="zdu3fv" name="Freq3LAF.h" compile="0" resource="0" file="Source/Freq3LAF.h"/>
-      <FILE id="CVaBub" name="Freq4LAF.cpp" compile="1" resource="0" file="Source/Freq4LAF.cpp"/>
-      <FILE id="fhaY1I" name="Freq4LAF.h" compile="0" resource="0" file="Source/Freq4LAF.h"/>
-      <FILE id="wbfsoM" name="Freq5LAF.cpp" compile="1" resource="0" file="Source/Freq5LAF.cpp"/>
-      <FILE id="HLO4CT" name="Freq5LAF.h" compile="0" resource="0" file="Source/Freq5LAF.h"/>
-      <FILE id="xk0M94" name="Freq6LAF.cpp" compile="1" resource="0" file="Source/Freq6LAF.cpp"/>
-      <FILE id="tIvGX7" name="Freq6LAF.h" compile="0" resource="0" file="Source/Freq6LAF.h"/>
-      <FILE id="dhhgHN" name="Freq7LAF.cpp" compile="1" resource="0" file="Source/Freq7LAF.cpp"/>
-      <FILE id="m0QxXA" name="Freq7LAF.h" compile="0" resource="0" file="Source/Freq7LAF.h"/>
-      <FILE id="W2MSyG" name="Freq8LAF.cpp" compile="1" resource="0" file="Source/Freq8LAF.cpp"/>
-      <FILE id="V2yO7p" name="Freq8LAF.h" compile="0" resource="0" file="Source/Freq8LAF.h"/>
-      <FILE id="CmBxza" name="Gain1.cpp" compile="1" resource="0" file="Source/Gain1.cpp"/>
-      <FILE id="VMCpAL" name="Gain1.h" compile="0" resource="0" file="Source/Gain1.h"/>
-      <FILE id="zeAtAs" name="Gain2.cpp" compile="1" resource="0" file="Source/Gain2.cpp"/>
-      <FILE id="ZA8aSO" name="Gain2.h" compile="0" resource="0" file="Source/Gain2.h"/>
-      <FILE id="DhDEZQ" name="Gain3.cpp" compile="1" resource="0" file="Source/Gain3.cpp"/>
-      <FILE id="tNLOA9" name="Gain3.h" compile="0" resource="0" file="Source/Gain3.h"/>
-      <FILE id="FCLuf1" name="Gain4.cpp" compile="1" resource="0" file="Source/Gain4.cpp"/>
-      <FILE id="tcujJV" name="Gain4.h" compile="0" resource="0" file="Source/Gain4.h"/>
-      <FILE id="w2LOt0" name="Gain5.cpp" compile="1" resource="0" file="Source/Gain5.cpp"/>
-      <FILE id="cTavr8" name="Gain5.h" compile="0" resource="0" file="Source/Gain5.h"/>
-      <FILE id="QAjCwQ" name="Gain6.cpp" compile="1" resource="0" file="Source/Gain6.cpp"/>
-      <FILE id="Ixyvgt" name="Gain6.h" compile="0" resource="0" file="Source/Gain6.h"/>
-      <FILE id="rxPNBJ" name="Gain7.cpp" compile="1" resource="0" file="Source/Gain7.cpp"/>
-      <FILE id="FYY4I0" name="Gain7.h" compile="0" resource="0" file="Source/Gain7.h"/>
-      <FILE id="gPOAX6" name="Gain8.cpp" compile="1" resource="0" file="Source/Gain8.cpp"/>
-      <FILE id="D2hlcP" name="Gain8.h" compile="0" resource="0" file="Source/Gain8.h"/>
-      <FILE id="JQMa6h" name="HorizontalLevelMeter.h" compile="0" resource="0"
-            file="Source/HorizontalLevelMeter.h"/>
-      <FILE id="Wj3bAk" name="HorizontalSlider.cpp" compile="1" resource="0"
-            file="Source/HorizontalSlider.cpp"/>
-      <FILE id="DOL26k" name="HorizontalSlider.h" compile="0" resource="0"
-            file="Source/HorizontalSlider.h"/>
-      <FILE id="Oc3NpC" name="MasterLAF.cpp" compile="1" resource="0" file="Source/MasterLAF.cpp"/>
-      <FILE id="DoiEgu" name="MasterLAF.h" compile="0" resource="0" file="Source/MasterLAF.h"/>
-      <FILE id="rHSwtP" name="OriginalFreqGain.cpp" compile="1" resource="0"
-            file="Source/OriginalFreqGain.cpp"/>
-      <FILE id="HQx0eJ" name="OriginalFreqGain.h" compile="0" resource="0"
-            file="Source/OriginalFreqGain.h"/>
-      <FILE id="HSmjkn" name="Oscillator1.h" compile="0" resource="0" file="Source/Oscillator1.h"/>
-      <FILE id="QCVuPN" name="Oscillator2.h" compile="0" resource="0" file="Source/Oscillator2.h"/>
-      <FILE id="H5MjU2" name="Oscillator3.h" compile="0" resource="0" file="Source/Oscillator3.h"/>
-      <FILE id="uuGSp5" name="Oscillator4.h" compile="0" resource="0" file="Source/Oscillator4.h"/>
-      <FILE id="YRxX8x" name="Oscillator5.h" compile="0" resource="0" file="Source/Oscillator5.h"/>
-      <FILE id="uR38mg" name="Oscillator6.h" compile="0" resource="0" file="Source/Oscillator6.h"/>
-      <FILE id="VDlN3y" name="Oscillator7.h" compile="0" resource="0" file="Source/Oscillator7.h"/>
-      <FILE id="cTuXMe" name="Oscillator8.h" compile="0" resource="0" file="Source/Oscillator8.h"/>
-      <FILE id="CroxCh" name="Oscillator9.h" compile="0" resource="0" file="Source/Oscillator9.h"/>
-      <FILE id="TlD35n" name="ParamID.h" compile="0" resource="0" file="Source/ParamID.h"/>
-      <FILE id="Lttcas" name="PluginEditor.cpp" compile="1" resource="0"
+      <GROUP id="{C9B85672-423D-51BD-DC38-76B856784B91}" name="LAF">
+        <FILE id="qhNdot" name="HorizontalLevelMeter.h" compile="0" resource="0"
+              file="Source/HorizontalLevelMeter.h"/>
+        <FILE id="MYiqXN" name="ADSRSliderLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/ADSRSliderLookAndFeel.cpp"/>
+        <FILE id="WiPO7X" name="ADSRSliderLookAndFeel.h" compile="0" resource="0"
+              file="Source/ADSRSliderLookAndFeel.h"/>
+        <FILE id="L5hGvJ" name="FreqSliderLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/FreqSliderLookAndFeel.cpp"/>
+        <FILE id="NcxGBh" name="FreqSliderLookAndFeel.h" compile="0" resource="0"
+              file="Source/FreqSliderLookAndFeel.h"/>
+        <FILE id="VwgTWS" name="GainSliderLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/GainSliderLookAndFeel.cpp"/>
+        <FILE id="ZdjzRE" name="GainSliderLookAndFeel.h" compile="0" resource="0"
+              file="Source/GainSliderLookAndFeel.h"/>
+      </GROUP>
+      <GROUP id="{DA6CE605-6EF3-6C99-027A-95C95C796F28}" name="DSP">
+        <FILE id="YvPXxr" name="CircularBuffer.cpp" compile="1" resource="0"
+              file="Source/CircularBuffer.cpp"/>
+        <FILE id="jEEtUW" name="CircularBuffer.h" compile="0" resource="0"
+              file="Source/CircularBuffer.h"/>
+        <FILE id="u6D1v6" name="SineWave.cpp" compile="1" resource="0" file="Source/SineWave.cpp"/>
+        <FILE id="qLMCjj" name="SineWave.h" compile="0" resource="0" file="Source/SineWave.h"/>
+        <FILE id="uuEpUw" name="Oscillator1.h" compile="0" resource="0" file="Source/Oscillator1.h"/>
+        <FILE id="uXUnpe" name="Oscillator2.h" compile="0" resource="0" file="Source/Oscillator2.h"/>
+        <FILE id="EtXZP6" name="Oscillator3.h" compile="0" resource="0" file="Source/Oscillator3.h"/>
+        <FILE id="fuhA7j" name="Oscillator4.h" compile="0" resource="0" file="Source/Oscillator4.h"/>
+        <FILE id="iw5apu" name="Oscillator5.h" compile="0" resource="0" file="Source/Oscillator5.h"/>
+        <FILE id="gRaxn2" name="Oscillator6.h" compile="0" resource="0" file="Source/Oscillator6.h"/>
+        <FILE id="vMcPWM" name="Oscillator7.h" compile="0" resource="0" file="Source/Oscillator7.h"/>
+        <FILE id="kPuWz3" name="Oscillator8.h" compile="0" resource="0" file="Source/Oscillator8.h"/>
+        <FILE id="GVPOu8" name="Oscillator9.h" compile="0" resource="0" file="Source/Oscillator9.h"/>
+      </GROUP>
+      <GROUP id="{B76B499F-E248-5EC4-1AA7-87CEE9DD4EF3}" name="Components">
+        <FILE id="jgEtk2" name="FirstCompartment.cpp" compile="1" resource="0"
+              file="Source/FirstCompartment.cpp"/>
+        <FILE id="zApWYU" name="FirstCompartment.h" compile="0" resource="0"
+              file="Source/FirstCompartment.h"/>
+        <FILE id="e56MWt" name="SecondCompartment.cpp" compile="1" resource="0"
+              file="Source/SecondCompartment.cpp"/>
+        <FILE id="n161uW" name="SecondCompartment.h" compile="0" resource="0"
+              file="Source/SecondCompartment.h"/>
+        <FILE id="atDygb" name="ThirdCompartment.cpp" compile="1" resource="0"
+              file="Source/ThirdCompartment.cpp"/>
+        <FILE id="lHDW9z" name="ThirdCompartment.h" compile="0" resource="0"
+              file="Source/ThirdCompartment.h"/>
+        <FILE id="ejqJ1w" name="FourthCompartment.cpp" compile="1" resource="0"
+              file="Source/FourthCompartment.cpp"/>
+        <FILE id="TVBYsJ" name="FourthCompartment.h" compile="0" resource="0"
+              file="Source/FourthCompartment.h"/>
+        <FILE id="gduizb" name="FifthCompartment.cpp" compile="1" resource="0"
+              file="Source/FifthCompartment.cpp"/>
+        <FILE id="UrqBO9" name="FifthCompartment.h" compile="0" resource="0"
+              file="Source/FifthCompartment.h"/>
+      </GROUP>
+      <FILE id="IQ9xF1" name="ParamID.h" compile="0" resource="0" file="Source/ParamID.h"/>
+      <FILE id="eE7rZE" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="fRbebh" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-      <FILE id="xhOpIO" name="PluginProcessor.cpp" compile="1" resource="0"
+      <FILE id="QCRyeU" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="Ck08cE" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="EUEI2A" name="PluginProcessor.h" compile="0" resource="0"
+      <FILE id="FttLGH" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
-      <FILE id="ZbUlww" name="ReleaseSlider.cpp" compile="1" resource="0"
-            file="Source/ReleaseSlider.cpp"/>
-      <FILE id="rsrDob" name="ReleaseSlider.h" compile="0" resource="0" file="Source/ReleaseSlider.h"/>
-      <FILE id="AZgcXy" name="ResonanceSlider.cpp" compile="1" resource="0"
-            file="Source/ResonanceSlider.cpp"/>
-      <FILE id="VYqFfG" name="ResonanceSlider.h" compile="0" resource="0"
-            file="Source/ResonanceSlider.h"/>
-      <FILE id="AR6bxc" name="RotarySlider.cpp" compile="1" resource="0"
-            file="Source/RotarySlider.cpp"/>
-      <FILE id="QuVg0x" name="RotarySlider.h" compile="0" resource="0" file="Source/RotarySlider.h"/>
-      <FILE id="kDNDJK" name="SecondCompartment.cpp" compile="1" resource="0"
-            file="Source/SecondCompartment.cpp"/>
-      <FILE id="CAAYjh" name="SecondCompartment.h" compile="0" resource="0"
-            file="Source/SecondCompartment.h"/>
-      <FILE id="UZXykr" name="SineWave.cpp" compile="1" resource="0" file="Source/SineWave.cpp"/>
-      <FILE id="e733M6" name="SineWave.h" compile="0" resource="0" file="Source/SineWave.h"/>
-      <FILE id="Me69C8" name="SustainSlider.cpp" compile="1" resource="0"
-            file="Source/SustainSlider.cpp"/>
-      <FILE id="BSl17H" name="SustainSlider.h" compile="0" resource="0" file="Source/SustainSlider.h"/>
-      <FILE id="pKBZHK" name="ThirdCompartment.cpp" compile="1" resource="0"
-            file="Source/ThirdCompartment.cpp"/>
-      <FILE id="w6mKGo" name="ThirdCompartment.h" compile="0" resource="0"
-            file="Source/ThirdCompartment.h"/>
-      <FILE id="KeOzFR" name="VerticalSlider.cpp" compile="1" resource="0"
-            file="Source/VerticalSlider.cpp"/>
-      <FILE id="GFaq0c" name="VerticalSlider.h" compile="0" resource="0"
-            file="Source/VerticalSlider.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

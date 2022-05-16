@@ -27,14 +27,56 @@
 #include "Oscillator7.h"
 #include "Oscillator8.h"
 #include "Oscillator9.h"
+#include "ADSRSliderLookAndFeel.h"
 #include "PluginProcessor.h"
-#include "HorizontalSlider.h"
-#include "VerticalSlider.h"
-#include "RotarySlider.h"
-#include "AttackSlider.h"
-#include "DecaySlider.h"
-#include "ReleaseSlider.h"
-#include "SustainSlider.h"
+
+
+class BastowADSRSlider : public juce::Slider
+{
+public:
+    
+    BastowADSRSlider()
+    {
+        setLookAndFeel(&lf);
+        setTextBoxStyle(juce::Slider::NoTextBox, false, 90, 0);
+        setPopupDisplayEnabled(true, false, this);
+        setTextValueSuffix(" dB");
+        setVelocityBasedMode (true);
+        setVelocityModeParameters (0.15, 1, 0.5, false);
+        setSliderStyle(SliderStyle::RotaryVerticalDrag);
+    }
+    
+    ~BastowADSRSlider()
+    {
+        // You have to do this because otherwise the lf will be deleted twice!
+        setLookAndFeel(nullptr);
+    }
+    
+    void setColour(juce::Colour colourToSet)
+    {
+        lf.setSliderColour(colourToSet);
+    }
+    
+    void mouseDown (const juce::MouseEvent& event)
+    {
+        juce::Slider::mouseDown (event);
+
+        setMouseCursor (juce::MouseCursor::NoCursor);
+    }
+
+    void mouseUp (const juce::MouseEvent& event)
+    {
+        juce::Slider::mouseUp (event);
+
+        juce::Desktop::getInstance().getMainMouseSource().setScreenPosition (event.source.getLastMouseDownPosition());
+
+        setMouseCursor (juce::MouseCursor::NormalCursor);
+    }
+
+    
+private:
+   ADSRSliderLookAndFeel lf;
+};
 
 
 class ThirdCompartment : public juce::Component,  public juce::Slider::Listener
@@ -54,16 +96,16 @@ private:
     
     BastowSynthAudioProcessor& audioProcessor;
     
-    RotarySlider attackSlider,
+    BastowADSRSlider attackSlider,
+    releaseSlider,
     decaySlider,
-    sustainSlider,
-    releaseSlider;
+    sustainSlider;
     
-    AttackSliderLAF attackLAF;
-    DecaySliderLAF decayLAF;
-    ReleaseSliderLAF releaseLAF;
-    SustainSliderLAF sustainLAF;
+ 
     
+    constexpr static int numADSRSliders = 4;
+    std::array<BastowADSRSlider* const, numADSRSliders> sliderArray;
+    float level = 0.0f;
     //==============================================================================
                                 //APVTS Slider Connection .h
     //==============================================================================

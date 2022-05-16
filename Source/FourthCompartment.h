@@ -19,12 +19,9 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "HorizontalSlider.h"
-#include "VerticalSlider.h"
-#include "RotarySlider.h"
-#include "ResonanceSlider.h"
-#include "CutoffSlider.h"
-#include "MasterLAF.h"
+#include "FirstCompartment.h"
+#include "SecondCompartment.h"
+#include "ThirdCompartment.h"
 
 class FourthCompartment : public juce::Component,  public juce::Slider::Listener
 {
@@ -45,16 +42,17 @@ private:
     
     BastowSynthAudioProcessor& audioProcessor;
     
-    RotarySlider filterRes;
-    RotarySlider filterCutoff;
-    VerticalSlider masterVol;
+    BastowADSRSlider filterRes,
+    filterCutoff;
+    BastowFreqSlider masterVol;
 
- 
+    
+    constexpr static int numFreqSliders = 1;
+    constexpr static int numADSRSliders = 2;
+    std::array<BastowADSRSlider* const, numADSRSliders> sliderADSRArray;
+    std::array<BastowFreqSlider* const, numFreqSliders> sliderFreqArray;
 
-    ResonanceSliderLAF resonanceSlider;
-    MasterLAF masterLAF;
-    CutoffSliderLAF cutoffSlider;
-
+  
     float level = 0.0f;
 
     //==============================================================================

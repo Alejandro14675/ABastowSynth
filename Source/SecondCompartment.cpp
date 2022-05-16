@@ -24,28 +24,64 @@
 #include "SecondCompartment.h"
 
 SecondCompartment::SecondCompartment(BastowSynthAudioProcessor& p) :
-audioProcessor(p)
+audioProcessor(p), sliderArray{&gain1,
+    &gain2,
+    &gain3,
+    &gain4,
+    &gain5,
+    &gain6,
+    &gain7,
+    &gain8
+    }
 {
-   setAlwaysOnTop(true);
-   
+    
+    {
+        // Some helper functions
+        static const auto getFreqSliderColour = [this](int index) {
+            static const std::vector<juce::Colour> colours = {red, orange, yellow, brightGreen, limeGreen, brightBlue, blue, violet, grey};
+            return colours[index];
+        };
+        
+        using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+        static const auto createSliderAttachment = [](juce::AudioProcessorValueTreeState& tree, std::unique_ptr<SliderAttachment>& attachment, juce::String paramID, juce::Slider& slider) {
+            attachment = std::make_unique<SliderAttachment>(tree, paramID, slider);
+        };
+    
+        setAlwaysOnTop(true);
+        
+        // Setup each slider with their colours etc.
+        int index = 0;
+        for(auto* slider : sliderArray)
+        {
+            addAndMakeVisible(slider);
+            slider->addListener(this);
+            slider->setColour(getFreqSliderColour(index++));
+        }
+        
+        // You could also put this in the above for loop at some point, which would be tidy :)
+        auto& apvts = audioProcessor.tree;
+        createSliderAttachment(apvts, gain1Val, gain1Id, gain1);
+        createSliderAttachment(apvts, gain2Val, gain2Id, gain2);
+        createSliderAttachment(apvts, gain3Val, gain3Id, gain3);
+        createSliderAttachment(apvts, gain4Val, gain4Id, gain4);
+        createSliderAttachment(apvts, gain5Val, gain5Id, gain5);
+        createSliderAttachment(apvts, gain6Val, gain6Id, gain6);
+        createSliderAttachment(apvts, gain7Val, gain7Id, gain7);
+        createSliderAttachment(apvts, gain8Val, gain8Id, gain8);
+}
+}
     //=============================================================================
                                 //Making Visible
     //==============================================================================
     
-    addAndMakeVisible (&gain1);
-    addAndMakeVisible (&gain2);
-    addAndMakeVisible (&gain3);
-    addAndMakeVisible (&gain4);
-    addAndMakeVisible (&gain5);
-    addAndMakeVisible (&gain6);
-    addAndMakeVisible (&gain7);
-    addAndMakeVisible (&gain8);
+
   
     //==============================================================================
                                 //Gain Sliders
     //==============================================================================
 
-    gain1.setLookAndFeel (&gain1LAF);
+   
+/*gain1.setLookAndFeel (&gain1LAF);
     gain1.addListener(this);
     gain1.setTextValueSuffix("dB");
     gain1.setPopupDisplayEnabled(true, false, this);
@@ -93,20 +129,14 @@ audioProcessor(p)
     gain8.setTextValueSuffix("dB");
     gain8.setPopupDisplayEnabled(true, false, this);
 
+ */
     //==============================================================================
                                 //APVTS Slider Connection
     //==============================================================================
     
-    gain1Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain1Id, gain1);
-    gain2Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain2Id, gain2);
-    gain3Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain3Id, gain3);
-    gain4Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain4Id, gain4);
-    gain5Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain5Id, gain5);
-    gain6Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain6Id, gain6);
-    gain7Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain7Id, gain7);
-    gain8Val = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, gain8Id, gain8);
 
-}
+
+
 
 SecondCompartment::~SecondCompartment()
 {

@@ -19,9 +19,6 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "HorizontalSlider.h"
-#include "VerticalSlider.h"
-#include "RotarySlider.h"
 
 
 class FifthCompartment : public juce::Component,  public juce::Slider::Listener

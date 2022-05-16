@@ -1,27 +1,20 @@
 /*
   ==============================================================================
 
-    DecaySlider.cpp
-    Created: 3 Apr 2022 11:33:05pm
+    ADSRSliderLookAndFeel.cpp
+    Created: 15 May 2022 1:20:47am
     Author:  Bastow_boii 1
- ==============================================================================
-                                Description
 
- Uses Juce functions to draw a slider.
-  =============================================================================
+  ==============================================================================
 */
-//                              References
-///                            (Kengo, S., 2021)
-///                       (The Audio Programmer, 2017)
-///                            (JUCE, Unknown)
 
-#include "DecaySlider.h"
+#include "ADSRSliderLookAndFeel.h"
 
-DecaySliderLAF::DecaySliderLAF(){};
-DecaySliderLAF::~DecaySliderLAF(){};
+ADSRSliderLookAndFeel::ADSRSliderLookAndFeel(){};
+ADSRSliderLookAndFeel::~ADSRSliderLookAndFeel(){};
 
 
-juce::Slider::SliderLayout DecaySliderLAF::getSliderLayout (juce::Slider& slider)
+juce::Slider::SliderLayout ADSRSliderLookAndFeel::getSliderLayout (juce::Slider& slider)
 {
     auto localBounds = slider.getLocalBounds();
     
@@ -32,7 +25,7 @@ juce::Slider::SliderLayout DecaySliderLAF::getSliderLayout (juce::Slider& slider
     return layout;
 }
 
-void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int width, int height, float sliderPos,
+void ADSRSliderLookAndFeel::drawRotarySlider (juce::Graphics& g, int x, int y, int width, int height, float sliderPos,
                                           const float rotaryStartAngle, const float rotaryEndAngle, juce::Slider& slider)
 {
     
@@ -45,7 +38,7 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
     auto verySmallLine = radius * 0.0085f;
     auto smallLine = radius * 0.125f;
     auto mediumLine = radius * 0.325f;
-    auto bigLine = radius * 0.55f; 
+    auto bigLine = radius * 0.55f;
     auto arcRadius = radius - verySmallLine * 1.5f;
     
     //==============================================================================
@@ -79,7 +72,7 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
                                  rotaryEndAngle,
                                  true);
     
-    g.setColour (limeGreen.darker(0.075f));
+    g.setColour (mainSliderColour.darker(0.075f));
     g.strokePath (decorationTrack, juce::PathStrokeType (mediumLine, juce::PathStrokeType::curved, juce::PathStrokeType::rounded));
     
     //==============================================================================
@@ -96,10 +89,10 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
                             toAngle,
                             true);
     
-    g.setColour (limeGreen.brighter(0.75f));;
+    g.setColour (mainSliderColour.brighter(0.75f));;
            juce::PathStrokeType spotStrokeType (2.5f);
     float dashedLen[4] = {2, 4, 3, 5};
-        spotStrokeType.createDashedStroke(spotTrack, spotTrack, dashedLen, 2);
+    spotStrokeType.createDashedStroke(spotTrack, spotTrack, dashedLen, 2);
            g.strokePath(spotTrack, spotStrokeType);
     
     //==============================================================================
@@ -134,7 +127,7 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
                                  arcRadius,
                                  arcRadius,
                                  0.0f,
-                                 rotaryStartAngle * 0.6 ,
+                                 rotaryStartAngle * 0.65 ,
                                  rotaryEndAngle * 0.1,
                                  true);
     
@@ -143,9 +136,9 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
     //==============================================================================
                                 //Red Covers
     //==============================================================================
-    g.setColour (limeGreen.brighter(0.075f));
-    juce::Path limeGreenCover1;
-    limeGreenCover1.addCentredArc (bounds.getCentreX(),
+    g.setColour (mainSliderColour.brighter(0.075f));
+    juce::Path yellowCover1;
+    yellowCover1.addCentredArc (bounds.getCentreX(),
                                  bounds.getCentreY(),
                                  arcRadius,
                                  arcRadius,
@@ -154,22 +147,22 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
                                  rotaryEndAngle * 0.6,
                                  true);
     
-    g.setColour (limeGreen.darker(0.075f));
-    g.strokePath (limeGreenCover1, juce::PathStrokeType (smallLine, juce::PathStrokeType::curved, juce::PathStrokeType::rounded));
+    g.setColour (mainSliderColour.darker(0.075f));
+    g.strokePath (yellowCover1, juce::PathStrokeType (smallLine, juce::PathStrokeType::curved, juce::PathStrokeType::rounded));
     
-    g.setColour (brightGreen.brighter(0.075f));
-    juce::Path limeGreenCover2;
-    limeGreenCover2.addCentredArc (bounds.getCentreX(),
+    g.setColour (mainSliderColour.brighter(0.075f));
+    juce::Path yellowCover2;
+    yellowCover2.addCentredArc (bounds.getCentreX(),
                                  bounds.getCentreY(),
                                  arcRadius,
                                  arcRadius,
                                  0.0f,
-                                 rotaryStartAngle * 0.6,
+                                 rotaryStartAngle * 0.65,
                                  rotaryEndAngle * 0.1,
                                  true);
     
-    g.setColour (limeGreen.darker(0.075f));
-    g.strokePath (limeGreenCover2, juce::PathStrokeType (smallLine, juce::PathStrokeType::curved, juce::PathStrokeType::rounded));
+    g.setColour (mainSliderColour.darker(0.075f));
+    g.strokePath (yellowCover2, juce::PathStrokeType (smallLine, juce::PathStrokeType::curved, juce::PathStrokeType::rounded));
     
     //==============================================================================
                                 //thumb
@@ -181,6 +174,8 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
 
     thumb.addRoundedRectangle (-thumbWidth / 2 , -thumbWidth /2 , thumbWidth, radius + mediumLine, 10 , 10);
     
+   
+   
     
     g.setColour (juce::Colours::ghostwhite.darker(0.075f));
     
@@ -189,6 +184,6 @@ void DecaySliderLAF::drawRotarySlider (juce::Graphics& g, int x, int y, int widt
     g.setColour (blackGrey);
     g.fillPath (thumb, juce::AffineTransform::rotation (toAngle + 3.12f).translated (bounds.getCentre()));
     
-    
+  
 }
    

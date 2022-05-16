@@ -1,41 +1,32 @@
 /*
-  ==============================================================================
+  =============================================================================
 
-    MasterLAF.cpp
-    Created: 2 Apr 2022 12:11:56am
-    Author:  Bastow_boii 1
- ==============================================================================
-                                Description
+    FreqSliderLookAndFeel.cp
+    Created: 15 May 2022 1:18:59a
+    Author:  Bastow_boii 
 
- Uses Juce functions to draw a slider.
   =============================================================================
 */
-//                              References
-///                            (Kengo, S., 2021)
-///                            (JUCE, Unknown)
 
-#include "MasterLAF.h"
+#include "FreqSliderLookAndFeel.h"
 
+FreqSliderLookAndFeel::FreqSliderLookAndFeel(){};
+FreqSliderLookAndFeel::~FreqSliderLookAndFeel(){};
 
-
-MasterLAF::MasterLAF(){};
-MasterLAF::~MasterLAF(){};
-
-
-void MasterLAF::drawLinearSlider (juce::Graphics& g, int x, int y, int width, int height,
+void FreqSliderLookAndFeel::drawLinearSlider (juce::Graphics& g, int x, int y, int width, int height,
                        float sliderPos,
                        float minSliderPos,
                        float maxSliderPos,
                        const juce::Slider::SliderStyle style, juce::Slider& slider)
 
 {
-    //==============================================================================
+    //=============================================================================
                                             //Creates BackgroundTrack for Slider
     //==============================================================================
-    
+  
     g.setColour (juce::Colours::ghostwhite.darker(0.075f));
 
-    auto trackWidthMasterBackground = juce::jmin (19.5f, (float) height * 10.f );
+    auto trackWidthFrequencyBackground1 = juce::jmin (19.5f, (float) height * 10.f );
     
     juce::Point<float> pos1 (slider.isHorizontal() ? (float) x : (float) x + (float) width * 0.5f,
                                    slider.isHorizontal() ? (float) y + (float) height * 10.5f : (float) (height + y));
@@ -43,20 +34,18 @@ void MasterLAF::drawLinearSlider (juce::Graphics& g, int x, int y, int width, in
     juce::Point<float> pos2 (slider.isHorizontal() ? (float) (width + x) : pos1.x,
                                  slider.isHorizontal() ? pos1.y : (float) y);
     
-    juce::Path backgroundTrack;
-    backgroundTrack.startNewSubPath (pos1);
-    backgroundTrack.lineTo (pos2);
+    juce::Path trackBackround;
+    trackBackround.startNewSubPath (pos1);
+    trackBackround.lineTo (pos2);
     
     g.setColour (juce::Colours::ghostwhite.darker(0.075f));
-    g.strokePath (backgroundTrack, { trackWidthMasterBackground, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+    g.strokePath (trackBackround, { trackWidthFrequencyBackground1, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
     
     //==============================================================================
                                             //Creates Track for Slider
     //==============================================================================
     
-    auto trackWidthMaster = juce::jmin (8.5f, (float) height );
-
-    
+    auto trackWidthFrequency1 = juce::jmin (8.5f, (float) height );
 
     juce::Point<float> startPoint (slider.isHorizontal() ? (float) x : (float) x + (float) width * 0.5f,
                                    slider.isHorizontal() ? (float) y + (float) height * 0.5f : (float) (height + y));
@@ -68,9 +57,9 @@ void MasterLAF::drawLinearSlider (juce::Graphics& g, int x, int y, int width, in
            track.startNewSubPath (startPoint);
            track.lineTo (endPoint);
     
-    g.setColour (black);
+    g.setColour (mainSliderColour);
    
-    g.strokePath (track, { trackWidthMaster, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+    g.strokePath (track, { trackWidthFrequency1, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
     
     //==============================================================================
                                         // Creates dotted Track for slider
@@ -99,21 +88,23 @@ void MasterLAF::drawLinearSlider (juce::Graphics& g, int x, int y, int width, in
     dottedTrack.lineTo (maxPoint);
     
     g.setColour (juce::Colours::white.brighter(0.5f));
-           juce::PathStrokeType pathStrokeTypeDotted (2.f);
+           juce::PathStrokeType dottedStrokeType (2.f);
     float dashedLen[4] = {2, 4, 3, 5};
-    pathStrokeTypeDotted.createDashedStroke(dottedTrack, dottedTrack, dashedLen, 2);
+    dottedStrokeType.createDashedStroke(dottedTrack, dottedTrack, dashedLen, 2);
    
-           g.strokePath(dottedTrack, pathStrokeTypeDotted);
+           g.strokePath(dottedTrack, dottedStrokeType);
     
+
     //==============================================================================
-                            // Draws Thumb Rest
+    // Draws Thumb Rest
     //==============================================================================
-    
+  
     g.setColour (offWhite.brighter(5.5f));
                                     g.drawRoundedRectangle (juce::Rectangle<float> (static_cast<float> (x ? maxThumbWidth : minThumbWidth),
                                                                                     static_cast<float> (x ? maxThumbWidth : minThumbWidth))
                                                                                     .withCentre (x ? maxPoint : minPoint), 1000, 10.5);
     
+   
                   
 int thumbBeingDragged = slider.getThumbBeingDragged();
     
@@ -123,7 +114,7 @@ int thumbBeingDragged = slider.getThumbBeingDragged();
     // Decoration for Thumb Rest
     //==============================================================================
     
-    g.setColour (black.darker(0.08f));
+    g.setColour (mainSliderColour.darker(0.08f));
                                     g.drawRoundedRectangle (juce::Rectangle<float> (static_cast<float> (x ? maxThumbWidth : minThumbWidth),
                                                                                     static_cast<float> (x ? maxThumbWidth : minThumbWidth))
                                                                                     .withCentre (x ? maxPoint : minPoint), 50, 2.0);

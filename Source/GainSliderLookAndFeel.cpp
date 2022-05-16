@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    Gain3.cpp
-    Created: 2 Apr 2022 11:38:37am
+    Freq1LAF.cpp
+    Created: 2 Apr 2022 12:08:24am
     Author:  Bastow_boii 1
  ==============================================================================
                                 Description
@@ -14,13 +14,13 @@
 ///                            (Kengo, S., 2021)
 ///                            (JUCE, Unknown)
 
-#include "Gain3.h"
+#include "GainSliderLookAndFeel.h"
+
+GainSliderLookAndFeel::GainSliderLookAndFeel(){};
+GainSliderLookAndFeel::~GainSliderLookAndFeel(){};
 
 
-    Gain3LAF::Gain3LAF(){};
-    Gain3LAF::~Gain3LAF(){};
-
-    void Gain3LAF::drawLinearSlider  (juce::Graphics& g, int x, int y, int width, int height,
+    void GainSliderLookAndFeel::drawLinearSlider  (juce::Graphics& g, int x, int y, int width, int height,
                            float sliderPos,
                            float minSliderPos,
                            float maxSliderPos,
@@ -32,7 +32,7 @@
     //==============================================================================
     g.setColour (juce::Colours::ghostwhite.darker(5.175f));
 
-    auto trackWidthGainBackground3 = juce::jmin (15.5f, (float) height  );
+    auto trackWidthGainBackground1 = juce::jmin (15.5f, (float) height  );
 
     juce::Point<float> pos1 (slider.isHorizontal() ? (float) x : (float) x + (float) width * 0.5f,
     slider.isHorizontal() ? (float) y + (float) height * 0.5f : (float) (height + y));
@@ -45,13 +45,13 @@
         backgroundTrack.lineTo (pos2);
 
     g.setColour (juce::Colours::ghostwhite.darker(0.075f));
-    g.strokePath (backgroundTrack, { trackWidthGainBackground3, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
-        
+    g.strokePath (backgroundTrack, { trackWidthGainBackground1, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+
     //==============================================================================
         //Creates Track for Slider
     //==============================================================================
-
-    auto trackWidthGain3 = juce::jmin (6.5f, (float) height );
+        
+    auto trackWidthGain1 = juce::jmin (6.5f, (float) height );
 
 
 
@@ -65,14 +65,15 @@
     track.startNewSubPath (startPoint);
     track.lineTo (endPoint);
 
-        g.setColour (yellow.darker(0.32f));
+    g.setColour (mainSliderColour.darker(0.32f));
 
-    g.strokePath (track, { trackWidthGain3, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
+    g.strokePath (track, { trackWidthGain1, juce::PathStrokeType::curved, juce::PathStrokeType::rounded });
 
     //==============================================================================
     // Creates dotted Track for slider
     //==============================================================================
-
+        
+        
     juce::Path dottedTrack;
     juce::Point<float> minPoint, maxPoint, thumbPoint;
 
@@ -107,7 +108,7 @@
     // Draws Thumb Rest
     //==============================================================================
         
-    g.setColour (offWhite.brighter(5.5f));
+    g.setColour (offWhite.brighter(2.5f));
     g.drawRoundedRectangle (juce::Rectangle<float> (static_cast<float> (x ? maxThumbWidth : minThumbWidth),
                                                 static_cast<float> (x ? maxThumbWidth : minThumbWidth))
                                                 .withCentre (x ? startPoint : minPoint), 325, 5.f);
@@ -120,12 +121,10 @@
     //==============================================================================
     // Decoration for Thumb Rest
     //==============================================================================
-        
-    g.setColour (yellow.darker(0.64f));
+    g.setColour (mainSliderColour.darker(0.64f));
     g.drawRoundedRectangle (juce::Rectangle<float> (static_cast<float>    (x ? 0.5 * maxThumbWidth  : 0.5 * minThumbWidth),
                                                 static_cast<float> (x ? 0.5 * maxThumbWidth : 0.5 * minThumbWidth))
-                                                .withCentre (x ? startPoint : minPoint), 325, 6);
-
+                                                .withCentre (x ? startPoint : minPoint), 500, 6.);
 
     auto sliderThumbDecorationP1 = getSliderThumbRadius (slider) - 21;
     auto sliderThumbDecorationP2 = getSliderThumbRadius (slider) - 21;
@@ -146,10 +145,6 @@
 
 
 
-
-
-
-
     slider.setMouseCursor (juce::MouseCursor::NormalCursor);
 
 
@@ -163,7 +158,3 @@
 
 
     }
-
-
-
-

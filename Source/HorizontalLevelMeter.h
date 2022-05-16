@@ -19,7 +19,7 @@ Sets the default functions and variables in the class
 
 #pragma once
 #include <JuceHeader.h>
-#include "MasterLAF.h"
+#include "GainSliderLookAndFeel.h"
 
 class HorizontalLevelMeter : public juce::Component
 {

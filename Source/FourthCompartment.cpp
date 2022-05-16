@@ -26,41 +26,68 @@
 
 
 FourthCompartment::FourthCompartment(BastowSynthAudioProcessor& p) :
-audioProcessor(p)
+audioProcessor(p), sliderADSRArray{&filterRes,
+    &filterCutoff}, sliderFreqArray{&masterVol}
 {
+    {
+        // Some helper functions
+        static const auto getADSRSliderColour = [this](int index) {
+            static const std::vector<juce::Colour> colours = {black};
+            return colours[index];
+            
+         /*   static const auto getFreqSliderColour = [this](int index) {
+                static const std::vector<juce::Colour> colours = {black};
+                return colours[index];*/
+            
+        };
+        {
+            // Some helper functions
+            static const auto getFreqSliderColour = [this](int index) {
+                static const std::vector<juce::Colour> colours = {limeGreen, red};
+                return colours[index];
+                
+             /*   static const auto getFreqSliderColour = [this](int index) {
+                    static const std::vector<juce::Colour> colours = {black};
+                    return colours[index];*/
+                
+            };
+        
+        using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+        static const auto createSliderAttachment = [](juce::AudioProcessorValueTreeState& tree, std::unique_ptr<SliderAttachment>& attachment, juce::String paramID, juce::Slider& slider) {
+            attachment = std::make_unique<SliderAttachment>(tree, paramID, slider);
+        };
+
+        setAlwaysOnTop(true);
+        
+        // Setup each slider with their colours etc.
+        int index = 0;
+        for(auto* slider : sliderFreqArray)
+        {
+            addAndMakeVisible(slider);
+            slider->addListener(this);
+            slider->setColour(getADSRSliderColour(index++));
+        }
+        
+        // You could also put this in the above for loop at some point, which would be tidy :)
+        auto& apvts = audioProcessor.tree;
+        createSliderAttachment(apvts, cutoffVal, filterCutoffId, filterCutoff);
+        createSliderAttachment(apvts, resVal, filterResId, filterRes);
+
+      
+    int index2 = 0;
+    for(auto* slider : sliderADSRArray)
+    {
+        addAndMakeVisible(slider);
+        slider->addListener(this);
+        slider->setColour(getFreqSliderColour(index2++));
+    }
+        auto& apvts2 = audioProcessor.tree;
+        createSliderAttachment(apvts2, masterVal, gainMasterId, masterVol);
+    }
+
     setAlwaysOnTop(true);
  
-    //==============================================================================
-                                //Making Visible
-    //==============================================================================
-    
-    addAndMakeVisible(&filterRes);
-    addAndMakeVisible(&filterCutoff);
-    addAndMakeVisible(&masterVol);
-   
-    
-    //==============================================================================
-                                //Gain Sliders
-    //=============================================================================
-    
   
-    filterCutoff.setLookAndFeel (&cutoffSlider);
-    filterCutoff.addListener(this);
-    
-    filterCutoff.setTextValueSuffix("cutoff");
-    filterCutoff.setPopupDisplayEnabled(true, false, this);
-
-    filterRes.setLookAndFeel (&resonanceSlider);
-    filterRes.addListener(this);
-    filterRes.setTextValueSuffix("res");
-    filterRes.setPopupDisplayEnabled(true, false, this);
-  
-    
-    masterVol.setLookAndFeel (&masterLAF);
-    masterVol.addListener(this);
-    masterVol.setTextValueSuffix(" dB");
-    masterVol.setPopupDisplayEnabled(true, false, this);
-    
     //==============================================================================
                                 //APVTS Slider Connection
     //==============================================================================
@@ -73,7 +100,7 @@ audioProcessor(p)
    
    
 }
-
+}
 FourthCompartment::~FourthCompartment()
 {
 }

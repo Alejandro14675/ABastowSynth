@@ -1,40 +1,35 @@
 /*
-  ==============================================================================
+  =============================================================================
 
-    CutoffSlider.h
-    Created: 3 Apr 2022 11:35:02pm
-    Author:  Bastow_boii 1
- ==============================================================================
-                                Description
- 
- Initialises the default functions and variables in the class.
-  Overrides any Pure Virtual Functions.
+    FreqSliderLookAndFeelh
+    Created: 15 May 2022 1:18:59m
+    Author:  Bastow_boii1
+
   =============================================================================
 */
-//                              References
-///                            (Kengo, S., 2021)
-///                           (ColorHexa, Unknown)
-///                       (The Audio Programmer, 2017)
-///                            (JUCE, Unknown)
 
+#pragma one
 #include <JuceHeader.h>
-#pragma once
 
-class CutoffSliderLAF : public juce::LookAndFeel_V4
+class FreqSliderLookAndFeel : public juce::LookAndFeel_V4
 {
 public:
-    CutoffSliderLAF();
-    ~CutoffSliderLAF();
-        
-    juce::Slider::SliderLayout getSliderLayout (juce::Slider& slider) override;
-            
-    void drawRotarySlider (juce::Graphics&, int x, int y, int width, int height,
-                           float sliderPosProportional, float rotaryStartAngle,
-                           float rotaryEndAngle, juce::Slider&) override;
+    FreqSliderLookAndFeel();
+   ~FreqSliderLookAndFeel();
+                            
+    void drawLinearSlider (juce::Graphics& , int x, int y, int width, int height,
+                           float sliderPos,
+                           float minSliderPos,
+                           float maxSliderPos,
+                           const juce::Slider::SliderStyle, juce::Slider&) override;
     
-    
+    void setSliderColour(juce::Colour colourToUse)
+    {
+        mainSliderColour = colourToUse;
+    }
+
 private:
-    //==============================================================================
+    //=============================================================================
                                        //Colours
     //==============================================================================
     juce::Colour red = juce::Colour::fromFloatRGBA (0.91f, 0.25f, 0.25f, 1.0f);
@@ -50,6 +45,7 @@ private:
     juce::Colour grey = juce::Colour::fromFloatRGBA (0.42f, 0.42f, 0.42f, 1.0f);
     juce::Colour blackGrey = juce::Colour::fromFloatRGBA (0.2f, 0.2f, 0.2f, 1.0f);
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CutoffSliderLAF);
+    juce::Colour mainSliderColour = red;
+   
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( FreqSliderLookAndFeel)
 };
-

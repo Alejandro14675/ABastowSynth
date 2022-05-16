@@ -19,20 +19,39 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
-#include "HorizontalSlider.h"
-#include "VerticalSlider.h"
-#include "RotarySlider.h"
-#include "Gain1.h"
-#include "Gain2.h"
-#include "Gain3.h"
-#include "Gain4.h"
-#include "Gain5.h"
-#include "Gain6.h"
-#include "Gain7.h"
-#include "Gain8.h"
-#include "MasterLAF.h"
-#include "OriginalFreqGain.h"
+#include "GainSliderLookAndFeel.h"
 
+
+class BastowGainSlider : public juce::Slider
+{
+public:
+    
+    BastowGainSlider()
+    {
+        setLookAndFeel(&lf);
+        setTextBoxStyle(juce::Slider::NoTextBox, false, 90, 0);
+        setPopupDisplayEnabled(true, false, this);
+        setTextValueSuffix(" dB");
+        setVelocityBasedMode (true);
+        setVelocityModeParameters (0.15, 1, 0.5, false);
+        setSliderStyle(SliderStyle::LinearHorizontal);
+    }
+    
+    ~BastowGainSlider()
+    {
+        // You have to do this because otherwise the lf will be deleted twice!
+        setLookAndFeel(nullptr);
+    }
+    
+    void setColour(juce::Colour colourToSet)
+    {
+        lf.setSliderColour(colourToSet);
+    }
+    
+    
+private:
+    GainSliderLookAndFeel lf;
+};
 
 
 class SecondCompartment : public juce::Component,  public juce::Slider::Listener
@@ -53,7 +72,7 @@ private:
     
     BastowSynthAudioProcessor& audioProcessor;
 
-    HorizontalSlider gain1,
+    BastowGainSlider gain1,
     gain2,
     gain3,
     gain4,
@@ -62,15 +81,10 @@ private:
     gain7,
     gain8;
     
-    Gain1LAF   gain1LAF;
-    Gain2LAF   gain2LAF;
-    Gain3LAF   gain3LAF;
-    Gain4LAF   gain4LAF;
-    Gain5LAF   gain5LAF;
-    Gain6LAF   gain6LAF;
-    Gain7LAF   gain7LAF;
-    Gain8LAF  gain8LAF;
+ 
     
+    constexpr static int numGainSliders = 8;
+    std::array<BastowGainSlider* const, numGainSliders> sliderArray;
     float level = 0.0f;
     
     //==============================================================================

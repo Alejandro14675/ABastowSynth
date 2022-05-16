@@ -24,46 +24,57 @@
 #include "ThirdCompartment.h"
 
 ThirdCompartment::ThirdCompartment(BastowSynthAudioProcessor& p) :
-audioProcessor(p)
+audioProcessor(p), sliderArray{&attackSlider,
+    &releaseSlider,
+    &decaySlider,
+    &sustainSlider
+    }
 {
-    setAlwaysOnTop(true);
+    {
+        // Some helper functions
+        static const auto getFreqSliderColour = [this](int index) {
+            static const std::vector<juce::Colour> colours = {yellow, magenta, limeGreen, blue};
+            return colours[index];
+        };
+        
+        using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+        static const auto createSliderAttachment = [](juce::AudioProcessorValueTreeState& tree, std::unique_ptr<SliderAttachment>& attachment, juce::String paramID, juce::Slider& slider) {
+            attachment = std::make_unique<SliderAttachment>(tree, paramID, slider);
+        };
+    
+        setAlwaysOnTop(true);
+        
+        // Setup each slider with their colours etc.
+        int index = 0;
+        for(auto* slider : sliderArray)
+        {
+            addAndMakeVisible(slider);
+            slider->addListener(this);
+            slider->setColour(getFreqSliderColour(index++));
+        }
+        
+        // You could also put this in the above for loop at some point, which would be tidy :)
+        auto& apvts = audioProcessor.tree;
+        createSliderAttachment(apvts, attackVal, attackId, attackSlider);
+        createSliderAttachment(apvts, decayVal, decayId, decaySlider);
+        createSliderAttachment(apvts, releaseVal, releaseId, releaseSlider);
+        createSliderAttachment(apvts, sustainVal, sustainId, sustainSlider);
+       
+    }
+}
+    
     //==============================================================================
                                 //Making Visible
     //==============================================================================
     
-    addAndMakeVisible(&releaseSlider);
-    addAndMakeVisible(&sustainSlider);
-    addAndMakeVisible(&decaySlider);
-    addAndMakeVisible(&attackSlider);
-    
-    //==============================================================================
-                                //Gain Sliders
-    //==============================================================================
-    
-      attackSlider.setLookAndFeel (&attackLAF);
-     
-      decaySlider.setLookAndFeel (&decayLAF);
-     
-    
-      sustainSlider.setLookAndFeel (&sustainLAF);
-     
-    
-      releaseSlider.setLookAndFeel (&releaseLAF);
-     
+  
     
     //==============================================================================
                                 //APVTS Slider Connection
     //==============================================================================
-    
-    attackVal = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, attackId, attackSlider);
-    
-    decayVal = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, decayId, decaySlider);
-   
-    sustainVal = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, releaseId, sustainSlider);
 
-    releaseVal = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.tree, sustainId, releaseSlider);
     
-}
+
 
 ThirdCompartment::~ThirdCompartment()
 {
@@ -92,5 +103,5 @@ releaseSlider.setBounds (d.withX (575));
 }
 void ThirdCompartment::sliderValueChanged(juce::Slider* slider)
 {
-  
 }
+
